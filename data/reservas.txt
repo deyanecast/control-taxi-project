@@ -1,0 +1,3 @@
+juanito,ciudad,villa nueva,50
+peter,solola,ciudad,50
+carlos,xela,ciudad,50
