@@ -6,6 +6,7 @@
 #include <limits>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 std::vector<Distancia> distancias = {
     {"Ciudad A", "Ciudad B", 100},
@@ -273,6 +274,7 @@ void buscarReserva(const std::string& criterio) {
                 std::getline(iss, kmStr, ',') &&
                 std::getline(iss, tarifaStr)) {
                 
+                // Convertir todo a minúsculas para una búsqueda insensible a mayúsculas/minúsculas
                 std::string lineaLower = nombreCliente + origen + destino;
                 std::transform(lineaLower.begin(), lineaLower.end(), lineaLower.begin(), ::tolower);
                 std::string criterioLower = criterio;
