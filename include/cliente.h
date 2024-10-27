@@ -5,13 +5,17 @@
 
 struct Cliente {
     std::string nombre;
+    std::string apellido;
     std::string telefono;
+    std::string email;
+    std::string direccion;
 };
 
 void registrarCliente();
 void mostrarClientes();
+void editarCliente(const std::string& nombre);
+void eliminarCliente(const std::string& nombre);
 void generarHTMLClientes();
-void editarCliente(const std::string& nombreCliente);
+void buscarCliente(const std::string& criterio);
 
-
-#endif
+#endif // CLIENTE_H

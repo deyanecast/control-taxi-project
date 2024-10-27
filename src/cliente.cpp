@@ -6,14 +6,17 @@
 #include <sstream>
 #include <limits>
 #include <vector>
+#include <algorithm>
 
 void registrarCliente()
 {
     Cliente nuevoCliente;
 
     std::cout << "Ingrese el nombre del cliente: ";
-    std::cin.ignore();
-    std::getline(std::cin, nuevoCliente.nombre);
+    std::getline(std::cin >> std::ws, nuevoCliente.nombre);
+
+    std::cout << "Ingrese el apellido del cliente: ";
+    std::getline(std::cin >> std::ws, nuevoCliente.apellido);
 
     std::cout << "Ingrese el teléfono del cliente: ";
     std::getline(std::cin, nuevoCliente.telefono);
@@ -25,7 +28,7 @@ void registrarCliente()
         return;
     }
 
-    archivo << nuevoCliente.nombre << "," << nuevoCliente.telefono << "\n";
+    archivo << nuevoCliente.nombre << "," << nuevoCliente.apellido << "," << nuevoCliente.telefono << "\n";
     archivo.close();
 
     std::cout << "Cliente registrado correctamente.\n";
@@ -105,4 +108,40 @@ void editarCliente(const std::string& nombreCliente)
     } else {
         std::cout << "No se encontró cliente con el nombre: " << std::endl;
     }
+}
+
+void buscarCliente(const std::string& criterio) {
+    std::ifstream archivo("data/clientes.txt");
+    std::string linea;
+    bool encontrado = false;
+
+    if (!archivo) {
+        std::cerr << "Error: No se pudo abrir el archivo." << std::endl;
+        return;
+    }
+
+    while (std::getline(archivo, linea) && !encontrado) {
+        std::istringstream iss(linea);
+        std::string nombre, telefono;
+        
+        if (std::getline(iss, nombre, ',') && std::getline(iss, telefono)) {
+            std::string lineaLower = nombre + telefono;
+            std::transform(lineaLower.begin(), lineaLower.end(), lineaLower.begin(), ::tolower);
+            std::string criterioLower = criterio;
+            std::transform(criterioLower.begin(), criterioLower.end(), criterioLower.begin(), ::tolower);
+
+            if (lineaLower.find(criterioLower) != std::string::npos) {
+                encontrado = true;
+                std::cout << "\nCliente encontrado:" << std::endl;
+                std::cout << "Nombre: " << nombre << std::endl;
+                std::cout << "Teléfono: " << telefono << std::endl;
+            }
+        }
+    }
+    
+    if (!encontrado) {
+        std::cout << "No se encontró ningún cliente que coincida con el criterio de búsqueda." << std::endl;
+    }
+    
+    archivo.close();
 }

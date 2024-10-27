@@ -1,26 +1,33 @@
 #ifndef RESERVA_H
 #define RESERVA_H
+
 #include <string>
+#include <vector>
 
 struct Reserva {
     std::string cliente;
     std::string origen;
     std::string destino;
     float tarifa;
-    
-    // Información del vehículo y conductor
-    std::string marcaVehiculo;
-    std::string modeloVehiculo;
-    std::string matriculaVehiculo;
-    std::string nombreConductor;
-    std::string telefonoConductor;
 };
+
+struct Distancia {
+    std::string origen;
+    std::string destino;
+    float kilometros;
+};
+
+extern std::vector<Distancia> distancias;
 
 void hacerReserva();
 void mostrarReservas();
 void actualizarReserva(const std::string& nombreCliente);
+float calcularKilometraje(const std::string& origen, const std::string& destino);
+float calcularTarifa(float kilometraje);
+float obtenerDistancia(const std::string& origen, const std::string& destino);
 void borrarReserva(const std::string& nombreCliente);
 void borrarTodasLasReservas();
-float calcularTarifa(const std::string& origen, const std::string& destino);
+
+void buscarReserva(const std::string& criterio);
 
 #endif

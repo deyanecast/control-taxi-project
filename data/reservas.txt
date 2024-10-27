@@ -1,3 +1,6 @@
-juanito,ciudad,villa nueva,50
-peter,solola,ciudad,50
-carlos,xela,ciudad,50
+JUANA,CIUDAD GUATEMALA,SMP,18,180
+JUAN,ZONA 18,ZONA 1,17,170
+ALEX,SMP,ZONA 1,23,230
+Pedro Teo,Guatemala,Estados Unidos,123,1230
+Ivan,Guatemala,Paris,400,4000
+JUAN ,SMP,VILLA NUEVA,15,150

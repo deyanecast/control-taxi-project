@@ -92,7 +92,6 @@ void generarHTMLReservas() {
     float tarifa;
     char delimitador;
 
-    // Leer el archivo de reservas y agregar filas a la tabla HTML
     while (std::getline(archivoReservas, cliente, ',') &&
            std::getline(archivoReservas, origen, ',') &&
            std::getline(archivoReservas, destino, ',') &&
@@ -110,11 +109,9 @@ void generarHTMLReservas() {
                     << "<td>" << marcaVehiculo << " " << modeloVehiculo << " (Matrícula: " << matriculaVehiculo << ")</td>"
                     << "<td>" << nombreConductor << " (Teléfono: " << telefonoConductor << ")</td></tr>\n";
 
-        // Ignorar el salto de línea final
         archivoReservas.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    // Cerrar las etiquetas HTML
     archivoHTML << "</table>\n";
     archivoHTML << "</body>\n";
     archivoHTML << "</html>\n";
